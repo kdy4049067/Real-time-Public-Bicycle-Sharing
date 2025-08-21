@@ -1,4 +1,4 @@
-package com.bike.public_bike.domain;
+package com.bike.public_bike.domain.member.domain;
 
 import jakarta.persistence.*;
 import lombok.*;
@@ -23,4 +23,8 @@ public class Member {
 
     @Column(nullable = false)
     private Integer point;
+
+    @Column(nullable = false, unique = true)
+    private String email;
+
 }
