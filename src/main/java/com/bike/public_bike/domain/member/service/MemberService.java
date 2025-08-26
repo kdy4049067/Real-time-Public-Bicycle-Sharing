@@ -1,7 +1,9 @@
 package com.bike.public_bike.domain.member.service;
 
+import com.bike.public_bike.common.exception.CommonException;
 import com.bike.public_bike.domain.member.domain.Member;
 import com.bike.public_bike.domain.member.dto.MemberResponseDto;
+import com.bike.public_bike.domain.member.exception.MemberException;
 import com.bike.public_bike.domain.member.repository.MemberRepository;
 import lombok.AccessLevel;
 import lombok.RequiredArgsConstructor;
@@ -20,7 +22,7 @@ public class MemberService {
     @Transactional(readOnly = true, propagation = Propagation.SUPPORTS)
     public MemberResponseDto findMemberByEmail(String email){
         Member member = memberRepository.findByEmail(email)
-                .orElseThrow(() -> new RuntimeException("회원 없음"));
+                .orElseThrow(() ->  new CommonException(MemberException.NOT_FOUND_BY_EMAIL));
 
         return new MemberResponseDto(
                 member.getPassword(),
@@ -32,8 +34,8 @@ public class MemberService {
 
     @Transactional(readOnly = true, propagation = Propagation.SUPPORTS)
     public MemberResponseDto findByNickname(String nickname){
-        Member member = memberRepository.findByEmail(nickname)
-                .orElseThrow(() -> new RuntimeException("회원 없음"));
+        Member member = memberRepository.findByNickname(nickname)
+                .orElseThrow(() -> new CommonException(MemberException.NOT_FOUND_BY_NICKNAME));
 
         return new MemberResponseDto(
                 member.getPassword(),
