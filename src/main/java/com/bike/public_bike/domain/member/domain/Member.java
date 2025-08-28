@@ -27,4 +27,8 @@ public class Member {
     @Column(nullable = false, unique = true)
     private String email;
 
+    public void decreasePoint(int decrease){
+        this.point -= decrease;
+    }
+
 }
