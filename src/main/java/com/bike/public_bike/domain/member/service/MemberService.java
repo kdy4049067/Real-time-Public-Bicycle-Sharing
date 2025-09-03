@@ -20,9 +20,9 @@ public class MemberService {
     private final MemberRepository memberRepository;
 
     @Transactional
-    public Member createMember(String password, String nickName, String email){
+    public Member createMember(String email, String password, String nickName){
         Member newMember = Member.builder()
-                .password(password)
+                .passwordEncode(password)
                 .nickname(nickName)
                 .email(email)
                 .point(DEFAULT_POINT)
@@ -37,7 +37,7 @@ public class MemberService {
                 .orElseThrow(() -> new CommonException(MemberException.NOT_FOUND_BY_ID));
 
         return new MemberResponseDto(
-                member.getPassword(),
+                member.getPasswordEncode(),
                 member.getNickname(),
                 member.getPoint(),
                 member.getEmail()
@@ -50,7 +50,7 @@ public class MemberService {
                 .orElseThrow(() ->  new CommonException(MemberException.NOT_FOUND_BY_EMAIL));
 
         return new MemberResponseDto(
-                member.getPassword(),
+                member.getPasswordEncode(),
                 member.getNickname(),
                 member.getPoint(),
                 member.getEmail()
@@ -63,7 +63,7 @@ public class MemberService {
                 .orElseThrow(() -> new CommonException(MemberException.NOT_FOUND_BY_NICKNAME));
 
         return new MemberResponseDto(
-                member.getPassword(),
+                member.getPasswordEncode(),
                 member.getNickname(),
                 member.getPoint(),
                 member.getEmail()

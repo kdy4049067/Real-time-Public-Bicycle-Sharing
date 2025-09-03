@@ -16,7 +16,7 @@ public class Member {
     private Long id;
 
     @Column(nullable = false, unique = true)
-    private String password;
+    private String passwordEncode;
 
     @Column(nullable = false, unique = true)
     private String nickname;
