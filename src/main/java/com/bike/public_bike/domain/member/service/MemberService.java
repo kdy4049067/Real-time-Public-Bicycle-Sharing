@@ -37,6 +37,7 @@ public class MemberService {
                 .orElseThrow(() -> new CommonException(MemberException.NOT_FOUND_BY_ID));
 
         return new MemberResponseDto(
+                member.getId(),
                 member.getPasswordEncode(),
                 member.getNickname(),
                 member.getPoint(),
@@ -50,6 +51,7 @@ public class MemberService {
                 .orElseThrow(() ->  new CommonException(MemberException.NOT_FOUND_BY_EMAIL));
 
         return new MemberResponseDto(
+                member.getId(),
                 member.getPasswordEncode(),
                 member.getNickname(),
                 member.getPoint(),
@@ -63,6 +65,7 @@ public class MemberService {
                 .orElseThrow(() -> new CommonException(MemberException.NOT_FOUND_BY_NICKNAME));
 
         return new MemberResponseDto(
+                member.getId(),
                 member.getPasswordEncode(),
                 member.getNickname(),
                 member.getPoint(),
